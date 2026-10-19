@@ -1,0 +1,12 @@
+[Unit]
+Description=Retry due portfolio inquiry notifications
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ramtin
+WorkingDirectory=/opt/ramtin-portfolio
+EnvironmentFile=/etc/ramtin-portfolio.env
+ExecStart=/usr/bin/node /opt/ramtin-portfolio/scripts/run-outbox.mjs
+NoNewPrivileges=true
+PrivateTmp=true

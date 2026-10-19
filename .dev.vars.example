@@ -1,0 +1,16 @@
+# Local Worker development. Do not commit .dev.vars or share a real API key.
+SITE_URL=http://127.0.0.1:5173
+RATE_LIMIT_SALT=replace-with-a-long-random-local-value
+RESEND_API_KEY=
+# Test sender: only permitted when the owner Gmail is the Resend account recipient.
+# For production, use an address on your own verified sending domain.
+CONTACT_FROM="Ramtin Portfolio <onboarding@resend.dev>"
+# Recipient is fixed in lib/contact.ts: ramtin.babaei2002@gmail.com
+
+# Portable/local private inquiry dashboard. setup:local generates private values.
+ADMIN_AUTH_MODE=basic
+ADMIN_USERNAME=ramtin
+ADMIN_PASSWORD=
+CRON_SECRET=
+# Higher local test allowance; production defaults to 5 unless configured.
+CONTACT_RATE_LIMIT_PER_HOUR=100

@@ -1,0 +1,181 @@
+.magnetic-button {
+  --magnetic-size: clamp(148px, 12vw, 184px);
+  --magnetic-halo: 24px;
+  --magnetic-base: #20232a;
+  --magnetic-blue: #3652df;
+  position: relative;
+  display: inline-block;
+  width: var(--magnetic-width, var(--magnetic-size));
+  height: var(--magnetic-size);
+  flex: 0 0 var(--magnetic-width, var(--magnetic-size));
+  vertical-align: middle;
+}
+.magnetic-hit {
+  position: absolute;
+  inset: calc(-1 * var(--magnetic-halo));
+  display: grid;
+  place-items: center;
+  padding: var(--magnetic-halo);
+  border: 0;
+  background: transparent;
+  color: #fff;
+  border-radius: 50%;
+  outline: none;
+}
+.magnetic-disc {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--magnetic-width, var(--magnetic-size));
+  height: var(--magnetic-size);
+  border-radius: 50%;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--magnetic-base);
+  color: #fff;
+}
+.magnetic-fill {
+  --fill: 105%;
+  position: absolute;
+  inset: -2%;
+  background: var(--magnetic-blue);
+  border-radius: 50%;
+  transform: translate3d(0, calc(var(--fill) + var(--fill-center, 0%)), 0)
+    scale(1.12);
+}
+.magnetic-label {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 85%;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: center;
+}
+.magnetic-label .arrow {
+  width: 23px;
+  height: 23px;
+}
+.magnetic-hit:focus-visible .magnetic-disc {
+  outline: 3px solid #a5b2ff;
+  outline-offset: 6px;
+}
+.magnetic-button:not([data-motion-ready="true"]) .magnetic-fill {
+  transition: transform 0.55s var(--ease);
+}
+.magnetic-button:not([data-motion-ready="true"])
+  .magnetic-hit:is(:hover, :focus-visible, :active):not(:disabled)
+  .magnetic-fill {
+  transform: translate3d(0, var(--fill-center, 0%), 0) scale(1.12);
+}
+.magnetic-hit:disabled {
+  opacity: 0.75;
+  cursor: wait;
+}
+.magnetic-hit:disabled .magnetic-disc {
+  outline: 1px solid #ffffff50;
+  outline-offset: 3px;
+}
+.intro-description .magnetic-button {
+  display: block;
+  margin-top: 42px;
+}
+@media (hover: none), (pointer: coarse) {
+  .magnetic-button {
+    --magnetic-halo: 12px;
+  }
+  .magnetic-disc {
+    transition: scale 0.2s var(--ease);
+  }
+  .magnetic-hit:active:not(:disabled) .magnetic-disc {
+    scale: 0.96;
+  }
+}
+@media (max-width: 760px) {
+  .magnetic-button {
+    --magnetic-size: 140px;
+  }
+  .intro-description .magnetic-button {
+    margin-top: 34px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .magnetic-fill,
+  .magnetic-disc {
+    transition: none !important;
+  }
+  .magnetic-hit:active .magnetic-disc {
+    scale: 1;
+  }
+}
+
+.magnetic-hit:focus-visible {
+  outline: none;
+}
+[data-theme="dark"] .intro-description .magnetic-disc {
+  box-shadow: inset 0 0 0 1px #ffffff35;
+}
+.magnetic-button--pill {
+  --magnetic-size: 62px;
+  --magnetic-width: clamp(195px, 20vw, 235px);
+  max-width: 100%;
+}
+.magnetic-button--pill .magnetic-disc {
+  border-radius: 100px;
+  box-shadow: inset 0 0 0 1px #ffffff40;
+}
+.magnetic-button--pill .magnetic-label {
+  flex-direction: row;
+  gap: 20px;
+  max-width: 100%;
+  font-size: 12px;
+}
+.magnetic-button--pill .magnetic-label .arrow {
+  width: 18px;
+  height: 18px;
+  transition: rotate 0.45s var(--ease);
+}
+.magnetic-button--pill .magnetic-hit:is(:hover, :focus-visible) .arrow {
+  rotate: 12deg;
+}
+.magnetic-button--pill .magnetic-fill {
+  --fill-center: -50%;
+  inset: auto;
+  top: 50%;
+  left: -30%;
+  width: 160%;
+  aspect-ratio: 1;
+}
+.toolkit-section .magnetic-button {
+  margin-top: 30px;
+}
+.footer-action-line > .magnetic-button {
+  position: absolute;
+  inset-inline-end: 7%;
+  top: 50%;
+  translate: 0 -50%;
+  --magnetic-base: #3652df;
+  --magnetic-blue: #2443c8;
+}
+@media (max-width: 760px) {
+  .magnetic-button--pill {
+    --magnetic-size: 58px;
+    --magnetic-width: 205px;
+  }
+  .footer-action-line > .magnetic-button {
+    --magnetic-size: 124px;
+    inset-inline-end: 4%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .magnetic-button--pill .arrow {
+    transition: none;
+    rotate: none !important;
+  }
+}

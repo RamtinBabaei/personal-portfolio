@@ -1,0 +1,18 @@
+ALTER TABLE "inquiries" ADD COLUMN "details" TEXT NOT NULL DEFAULT '{}';
+ALTER TABLE "inquiries" ADD COLUMN "stage" TEXT NOT NULL DEFAULT 'new';
+ALTER TABLE "inquiries" ADD COLUMN "isRead" INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE "inquiries" ADD COLUMN "archived" INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE "inquiries" ADD COLUMN "privateNotes" TEXT NOT NULL DEFAULT '';
+ALTER TABLE "inquiries" ADD COLUMN "meetingAt" BIGINT;
+ALTER TABLE "inquiries" ADD COLUMN "meetingNotes" TEXT NOT NULL DEFAULT '';
+ALTER TABLE "inquiries" ADD COLUMN "followUpAt" BIGINT;
+ALTER TABLE "inquiries" ADD COLUMN "nextAction" TEXT NOT NULL DEFAULT '';
+ALTER TABLE "inquiries" ADD COLUMN "updatedAt" BIGINT NOT NULL DEFAULT 0;
+ALTER TABLE "inquiries" ADD COLUMN "notificationAttempts" INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE "inquiries" ADD COLUMN "firstNotificationAt" BIGINT NOT NULL DEFAULT 0;
+ALTER TABLE "inquiries" ADD COLUMN "nextNotificationAt" BIGINT NOT NULL DEFAULT 0;
+ALTER TABLE "inquiries" ADD COLUMN "notificationLeaseUntil" BIGINT NOT NULL DEFAULT 0;
+ALTER TABLE "inquiries" ADD COLUMN "notificationLease" TEXT NOT NULL DEFAULT '';
+ALTER TABLE "inquiries" ADD COLUMN "lastNotificationError" TEXT;
+CREATE INDEX "inquiries_status_nextNotificationAt_idx" ON "inquiries"("status","nextNotificationAt");
+CREATE INDEX "inquiries_archived_stage_createdAt_idx" ON "inquiries"("archived","stage","createdAt");

@@ -1,0 +1,77 @@
+{
+  "hero-480.webp": {
+    "width": 480,
+    "height": 270,
+    "bytes": 5170
+  },
+  "hero-960.webp": {
+    "width": 960,
+    "height": 540,
+    "bytes": 14264
+  },
+  "hero-1600.webp": {
+    "width": 1600,
+    "height": 900,
+    "bytes": 31038
+  },
+  "about-480.webp": {
+    "width": 480,
+    "height": 600,
+    "bytes": 24608
+  },
+  "about-960.webp": {
+    "width": 960,
+    "height": 1200,
+    "bytes": 76790
+  },
+  "about-1600.webp": {
+    "width": 1122,
+    "height": 1402,
+    "bytes": 103184
+  },
+  "workspace-480.webp": {
+    "width": 480,
+    "height": 320,
+    "bytes": 13082
+  },
+  "workspace-960.webp": {
+    "width": 960,
+    "height": 640,
+    "bytes": 40762
+  },
+  "workspace-1600.webp": {
+    "width": 1536,
+    "height": 1024,
+    "bytes": 93340
+  },
+  "portrait-480.webp": {
+    "width": 480,
+    "height": 600,
+    "bytes": 11328
+  },
+  "portrait-960.webp": {
+    "width": 960,
+    "height": 1200,
+    "bytes": 40108
+  },
+  "portrait-1600.webp": {
+    "width": 1122,
+    "height": 1402,
+    "bytes": 58400
+  },
+  "street-480.webp": {
+    "width": 480,
+    "height": 600,
+    "bytes": 52806
+  },
+  "street-960.webp": {
+    "width": 960,
+    "height": 1200,
+    "bytes": 136162
+  },
+  "street-1600.webp": {
+    "width": 1122,
+    "height": 1402,
+    "bytes": 171288
+  }
+}

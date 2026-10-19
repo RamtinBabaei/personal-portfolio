@@ -1,0 +1,87 @@
+{
+  "info": {
+    "name": "Ramtin Portfolio - Direct Contact Email",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Public Contact API: the form POST automatically sends its own notification; no dispatch command is required. HTTP 200 is persisted provider acceptance, not inbox delivery. HTTP 202 means safely stored and pending automatic retry. Keys stay server-side. Recipient is fixed to ramtin.babaei2002@gmail.com. Local rate limit defaults to 100/hour after setup; production defaults to 5. Preserve the same body and idempotency key when retrying."
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:5173",
+      "type": "string"
+    },
+    {
+      "key": "test_payload",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "item": [
+    {
+      "name": "Submit one Contact test - no admin",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/contact",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Origin",
+            "value": "{{base_url}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{{contact_body}}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "let payload = pm.collectionVariables.get(\"test_payload\");",
+              "if (!payload) {",
+              " const id = pm.variables.replaceIn(\"{{$guid}}\");",
+              " payload = JSON.stringify({name:\"Postman Test\",email:\"ramtin.babaei2002@gmail.com\",company:\"Local test\",services:[\"fullstack\",\"backend\"],budget:\"undecided\",subject:\"POSTMAN-CHECK-\"+Date.now(),message:\"A controlled test of the five contact questions and email acceptance.\",website:\"\",idempotencyKey:id});",
+              " pm.collectionVariables.set(\"test_payload\",payload);",
+              "}",
+              "const body=JSON.parse(payload);body.startedAt=Date.now()-5000;",
+              "pm.variables.set(\"contact_body\",JSON.stringify(body));"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const body=pm.response.json();",
+              "pm.test(\"Provider acceptance and saved receipt are confirmed\",function(){",
+              " pm.expect(pm.response.code).to.equal(200);",
+              " pm.expect(body.accepted).to.equal(true);",
+              " pm.expect(body.sent).to.equal(true);",
+              " pm.expect(body.emailStatus).to.equal(\"accepted\");",
+              " pm.expect(body.providerId).to.be.a(\"string\").and.not.empty;",
+              " pm.expect(body.reference).to.be.a(\"string\").and.match(/^[0-9a-f-]{36}$/i);",
+              "});",
+              "console.log(\"Provider email ID:\",body.providerId||\"not confirmed\");",
+              "console.log(\"Inspect the matching ID in Resend and search Gmail/Spam for POSTMAN-CHECK. Inbox delivery is not verified by this test.\");"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

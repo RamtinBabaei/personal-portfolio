@@ -1,0 +1,77 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Entry {
+  id        String @id
+  kind      String
+  slug      String
+  status    String
+  featured  Int
+  sortOrder Int
+  data      String
+  createdAt BigInt
+  updatedAt BigInt
+
+  @@unique([kind, slug])
+  @@index([kind, status, sortOrder])
+  @@map("entries")
+}
+
+model Inquiry {
+  id                     String  @id
+  idempotencyKey         String  @unique
+  fingerprint            String
+  name                   String
+  email                  String
+  subject                String
+  message                String
+  status                 String
+  createdAt              BigInt
+  providerId             String?
+  details                String  @default("{}")
+  notificationPayload    String  @default("")
+  stage                  String  @default("new")
+  isRead                 Int     @default(0)
+  archived               Int     @default(0)
+  privateNotes           String  @default("")
+  meetingAt              BigInt?
+  meetingNotes           String  @default("")
+  followUpAt             BigInt?
+  nextAction             String  @default("")
+  updatedAt              BigInt  @default(0)
+  notificationAttempts   Int     @default(0)
+  firstNotificationAt    BigInt  @default(0)
+  nextNotificationAt     BigInt  @default(0)
+  notificationLeaseUntil BigInt  @default(0)
+  notificationLease      String  @default("")
+  lastNotificationError  String?
+
+  @@index([status, nextNotificationAt])
+  @@index([archived, stage, createdAt])
+  @@index([createdAt])
+  @@map("inquiries")
+}
+
+model RateBucket {
+  id        String @id
+  count     Int
+  expiresAt BigInt
+
+  @@map("rate_buckets")
+}
+
+model Media {
+  id        String @id
+  mime      String
+  size      Int
+  createdAt BigInt
+
+  @@map("media")
+}
