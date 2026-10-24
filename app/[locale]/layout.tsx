@@ -7,7 +7,9 @@ import { PageTransition } from "@/components/page-transition";
 import { MotionSystem } from "@/components/motion";
 import "../globals.css";
 const baseMetadata: Metadata = {
-  metadataBase: new URL("https://ramtin-babaei-portfolio.shaficp.chatgpt.site"),
+  metadataBase: new URL(
+    "https://personal-portfolio.ramtinbabaei-portfolio.workers.dev",
+  ),
   title: {
     default: "Ramtin Babaei — Software Engineer",
     template: "%s — Ramtin Babaei",
@@ -87,7 +89,7 @@ export default async function Layout({
               "@type": "Person",
               name: "Ramtin Babaei",
               jobTitle: "Software Engineer",
-              url: "https://ramtin-babaei-portfolio.shaficp.chatgpt.site",
+              url: "https://personal-portfolio.ramtinbabaei-portfolio.workers.dev",
               sameAs: [
                 "https://github.com/RamtinBabaei",
                 "https://www.linkedin.com/in/ramtin-babaei",
