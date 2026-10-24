@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const origin =
     runtime().SITE_URL ??
-    "https://ramtin-babaei-portfolio.shaficp.chatgpt.site";
+    "https://personal-portfolio.ramtinbabaei-portfolio.workers.dev";
   const entries = await publishedEntries("project");
   return locales.flatMap((locale) => [
     ...["", "/work", "/about", "/contact"].map((path) => ({
