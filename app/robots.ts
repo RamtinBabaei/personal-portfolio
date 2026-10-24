@@ -12,6 +12,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: "/",
             disallow: ["/api/", "/en/studio/", "/fa/studio/"],
           },
-    sitemap: `${env.SITE_URL ?? "https://ramtin-babaei-portfolio.shaficp.chatgpt.site"}/sitemap.xml`,
+    sitemap: `${env.SITE_URL ?? "https://personal-portfolio.ramtinbabaei-portfolio.workers.dev"}/sitemap.xml`,
   };
 }
