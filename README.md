@@ -4,6 +4,8 @@ A responsive personal portfolio for a frontend-focused software engineer, with b
 
 **React · TypeScript · Next.js/Vinext · GSAP · Cloudflare Workers · D1 · Drizzle · Vitest**
 
+**Live demo:** [personal-portfolio.ramtinbabaei-portfolio.workers.dev](https://personal-portfolio.ramtinbabaei-portfolio.workers.dev/en)
+
 ## What the project includes
 
 - English and Persian routes with localized metadata.
