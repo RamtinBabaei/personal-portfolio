@@ -8,6 +8,9 @@ import { WorkGrid } from "@/components/work-grid";
 export const dynamic = "force-dynamic";
 const workStyles = `
 .work-page{padding-top:0;overflow:clip}
+body:has(.work-page) .site-header{color:#f7f7f4}
+body:has(.work-page) .site-header .brand-role{color:#aeb2ba}
+body:has(.work-page) .site-header .icon-button:hover{background:#ffffff1a}
 .work-hero{width:calc(100% + (var(--pad)*2));margin-inline:calc(var(--pad)*-1);padding:clamp(180px,21vw,330px) var(--pad) clamp(95px,11vw,170px);color:#f7f7f4;background:#17181b;border-radius:0 0 50% 9%}
 .work-hero-inner{max-width:1080px;margin-inline:auto}
 .work-hero .section-label{color:#aeb2ba;margin-bottom:38px}
